@@ -1,0 +1,20 @@
+input createOrgInput {
+  name: String!
+  orgType: String!
+  npi: String!
+}
+
+type organization {
+  orgId: String
+  name: String
+  orgType: String
+  npi: String
+}
+
+type Query {
+  findOrg(uuid: String): organization
+}
+
+type Mutation {
+  createOrg(input: createOrgInput): organization
+}

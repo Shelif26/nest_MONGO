@@ -1,0 +1,51 @@
+input CreateFacilityIput {
+  name: String!
+  address: AddressInput!
+}
+
+input AddressInput {
+  line1: String!
+  line2: String
+  city: String!
+  state: String!
+  zip: Int!
+  country: String!
+}
+
+input CreateOrgFacilityInput {
+  orgId: String!
+  facilityId: String!
+  active: Boolean
+}
+
+type OrgFacility {
+  orgFacilityId: String!
+  orgId: String!
+  facilityId: String!
+  active: Boolean
+}
+
+type Facility {
+  facilityId: String!
+  name: String!
+  address: Address!
+}
+
+type Address {
+  line1: String!
+  line2: String
+  city: String!
+  state: String!
+  zip: Int!
+  country: String!
+}
+
+type Query {
+  findFacility(facilityId: String): Facility
+  findOrgFacility(orgFacilityId: String): OrgFacility
+}
+
+type Mutation {
+  createFacility(input: CreateFacilityIput): Facility
+  createOrgFacility(input: CreateOrgFacilityInput): OrgFacility
+}

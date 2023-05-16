@@ -1,0 +1,24 @@
+input createPatientInput {
+  firstName: String!
+  lastName: String!
+  dateOfBirth: String!
+  addresses: String
+  phones: String
+}
+
+type patient {
+  patientId: String!
+  firstName: String!
+  lastName: String!
+  dateOfBirth: String!
+  addresses: String
+  phones: String
+}
+
+type Query {
+  greet: String
+}
+
+type Mutation {
+  createPatient(input: createPatientInput): patient
+}
