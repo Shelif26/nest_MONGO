@@ -42,7 +42,6 @@ type Address {
 
 type Query {
   findFacility(facilityId: String): Facility
-  findOrgFacility(orgFacilityId: String): OrgFacility
 }
 
 type Mutation {

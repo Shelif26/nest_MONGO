@@ -27,7 +27,7 @@ export class Facility {
     zip: number;
     country: string;
   };
-
+  
   @CreateDateColumn({ name: 'created_timestamp', nullable: false })
   createdTimestamp?: Date;
 

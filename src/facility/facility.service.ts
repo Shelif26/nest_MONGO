@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { MongoRepository } from 'typeorm';
 import { v4 as uuidv4 } from 'uuid';
 import { Facility } from './entities/facility.entity';
 import { createFacility } from './dto/facility.type';
@@ -9,7 +9,7 @@ import { createFacility } from './dto/facility.type';
 export class FacilityService {
   constructor(
     @InjectRepository(Facility)
-    private facilityRepository: Repository<Facility>,
+    private facilityRepository: MongoRepository<Facility>,
   ) {}
   async greet(): Promise<string> {
     return 'Hello this the service class for the patient service';
@@ -23,7 +23,7 @@ export class FacilityService {
   }
 
   async createFacility(input: createFacility): Promise<Facility> {
-    console.log(input)
+    console.log(input);
     const createdFacility = await this.facilityRepository.save({
       facilityId: uuidv4(),
       name: input.name,
@@ -40,7 +40,5 @@ export class FacilityService {
     return createdFacility;
   }
 
-  async createOrgFacility(){
-    
-  }
+  async createOrgFacility() {}
 }

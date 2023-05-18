@@ -6,9 +6,13 @@ import { FacilityService } from './facility.service';
 import { OrganizationFacility } from './entities/orgFacility.entity';
 import { OrganizationFacilityService } from './organizationFacility.service';
 import { OrgFacilityResolver } from './organozationFacility.resolver';
+import { Organization } from 'src/organization/entities/organization.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Facility, OrganizationFacility])],
+  imports: [
+    TypeOrmModule.forFeature([Facility, OrganizationFacility, Organization]),
+    OrganizationFacility,
+  ],
   providers: [
     FacilityResolver,
     FacilityService,

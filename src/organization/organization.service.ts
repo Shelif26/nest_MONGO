@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { MongoRepository } from 'typeorm';
 import { v4 as uuidv4 } from 'uuid';
 import { Organization } from './entities/organization.entity';
 import { createOrgInput } from './dto/org.type';
@@ -10,7 +10,7 @@ import { createOrgInput } from './dto/org.type';
 export class OrganizationService {
   constructor(
     @InjectRepository(Organization)
-    private orgRepository: Repository<Organization>,
+    private orgRepository: MongoRepository<Organization>,
   ) {}
   async greet(): Promise<string> {
     return 'Hello this the service class for the patient service';

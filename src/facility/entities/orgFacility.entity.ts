@@ -7,7 +7,7 @@ import {
   ObjectIdColumn,
 } from 'typeorm';
 
-@Entity('Organization Facility')
+@Entity('organizationFacility')
 export class OrganizationFacility {
   @ObjectIdColumn()
   id: number;
