@@ -63,4 +63,44 @@ export class OrganizationFacilityService {
       throw new Error('Failed to create OrganizationFacility');
     }
   }
+
+  async getOrgFacilityAssociation(orgFacilityId: string) {
+    const orgfacilityData = await this.OrganizationfacilityRepository.aggregate(
+      [
+        {
+          $match: {
+            orgFacilityId: orgFacilityId,
+          },
+        },
+        {
+          $lookup: {
+            from: 'organization',
+            localField: 'orgId',
+            foreignField: 'orgId',
+            as: 'organizationData',
+          },
+        },
+        {
+          $unwind: '$organizationData',
+        },
+        {
+          $project: {
+            orgFacilityId: 1,
+            orgId: '$organizationData.orgId',
+            facilityId: 1,
+            active: 1,
+            created_timestamp: 1,
+            updated_timestamp: 1,
+            organizationName: '$organizationData.name',
+            orgType: '$organizationData.orgType',
+            npi: '$organizationData.npi',
+          },
+        },
+      ], 
+    ).toArray();
+
+    console.log(orgfacilityData);
+
+    return orgfacilityData[0];
+  }
 }

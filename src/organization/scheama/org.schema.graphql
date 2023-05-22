@@ -1,6 +1,15 @@
+enum OrganizationType {
+  CORPORATION
+  NONPROFIT
+  GOVERNMENT
+  PARTNERSHIP
+  SOLE_PROPRIETORSHIP
+  COOPERATIVE
+}
+
 input createOrgInput {
   name: String!
-  orgType: String!
+  orgType: OrganizationType!
   npi: String!
 }
 
@@ -11,8 +20,26 @@ type organization {
   npi: String
 }
 
+type PatientOrganization {
+  orgPatientId: String!
+  orgId: String!
+  patientId: String!
+  active: Boolean
+  patientData: PatientData!
+}
+
+type PatientData {
+  patientId: String!
+  firstName: String!
+  lastName: String!
+  dateOfBirth: String!
+  addresses: String
+  phones: String
+}
+
 type Query {
   findOrg(uuid: String): organization
+  getAllPatientOrganization(orgId: String): [PatientOrganization]
 }
 
 type Mutation {

@@ -6,6 +6,21 @@ input createPatientInput {
   phones: String
 }
 
+input createOrgPatientInput {
+  patientId: String!
+  orgId: String!
+  active: Boolean
+}
+
+type patientOrgAssociation {
+  orgPatientId: String!
+  patientId: String!
+  orgId: String!
+  active: Boolean
+  patient: patient
+  organization: organization!
+}
+
 type patient {
   patientId: String!
   firstName: String!
@@ -15,10 +30,27 @@ type patient {
   phones: String
 }
 
+type organization {
+  orgId: String!
+  name: String!
+  orgType: String!
+  npi: String!
+}
+
+type organizationPatient {
+  orgPatientId: String!
+  patientId: String!
+  orgId: String!
+  active: Boolean
+}
+
 type Query {
   greet: String
+  greetfromOrgPatient: String
+  getPatientOrgAssociation(orgPatientId: String): patientOrgAssociation
 }
 
 type Mutation {
   createPatient(input: createPatientInput): patient
+  createOrgPatient(input: createOrgPatientInput): organizationPatient
 }

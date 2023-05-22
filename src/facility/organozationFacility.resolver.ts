@@ -9,6 +9,13 @@ export class OrgFacilityResolver {
     private readonly organizationFacilityservice: OrganizationFacilityService,
   ) {}
 
+  @Query()
+  getOrgFacilityAssociation(@Args('orgFacilityId') orgFacilityId: string) {
+    return this.organizationFacilityservice.getOrgFacilityAssociation(
+      orgFacilityId,
+    );
+  }
+
   @Mutation()
   createOrgFacility(
     @Args('input') input: createOrganizationInput,

@@ -11,6 +11,7 @@ import { OrganizationFacility } from './facility/entities/orgFacility.entity';
 import { Staff } from './staff/entities/staff.enity';
 import { Facility } from './facility/entities/facility.entity';
 import { Provider } from './provider/entities/provider.entity';
+import { OrganizationPatient } from './patient/entities/orgPatient.entity';
 
 @Module({
   imports: [
@@ -28,6 +29,7 @@ import { Provider } from './provider/entities/provider.entity';
         Staff,
         Facility,
         Provider,
+        OrganizationPatient,
       ],
     }),
     GraphQLModule.forRoot({

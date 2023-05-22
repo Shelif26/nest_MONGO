@@ -25,6 +25,23 @@ type OrgFacility {
   active: Boolean
 }
 
+type OrgFacilityAssociation {
+  orgFacilityId: String!
+  orgId: String!
+  name: String!
+  orgType: String!
+  npi: String!
+  facilityId: String!
+  active: Boolean
+}
+
+type Organization {
+  orgId: String!
+  name: String!
+  orgType: String!
+  npi: String!
+}
+
 type Facility {
   facilityId: String!
   name: String!
@@ -42,6 +59,7 @@ type Address {
 
 type Query {
   findFacility(facilityId: String): Facility
+  getOrgFacilityAssociation(orgFacilityId: String): OrgFacilityAssociation
 }
 
 type Mutation {

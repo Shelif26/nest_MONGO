@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { OrganizationService } from './organization.service';
 import { createOrgInput } from './dto/org.type';
@@ -15,6 +14,11 @@ export class OrganizationResolver {
   @Query()
   findOrg(@Args('uuid') uuid: string): Promise<Organization> {
     return this.organizationservice.findOrg(uuid);
+  }
+
+  @Query()
+  getAllPatientOrganization(@Args('orgId') orgId: string) {
+    return this.organizationservice.getAllPatientOrganization(orgId);
   }
 
   @Mutation()
